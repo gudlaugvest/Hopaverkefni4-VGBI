@@ -132,7 +132,7 @@ for index in range(0, len(linreg_pred_test_set)):
     result_list.append(linreg_pred_test_set[index][0] + actual_sales[index])
 linreg_pred_series = pd.Series(result_list,name='linreg_pred')
 predict_df = predict_df.merge(linreg_pred_series, left_index=True, right_index=True)
-print("Result of Linear Regression: ", predict_df)
+print("Result of Linear Regression: ", result_list)
 
 
 linreg_rmse = np.sqrt(mean_squared_error(predict_df['linreg_pred'], monthly_sales['unitsSold'][-7:]))
@@ -143,14 +143,14 @@ print('Linear Regression MAE: ', linreg_mae)
 print('Linear Regression R2 Score: ', linreg_r2)
 
 # plot the results
-plt.figure(figsize=(15,7))
-plt.plot(monthly_sales['idCalendar'], monthly_sales['unitsSold'])
-plt.plot(predict_df['idCalendar'], predict_df['linreg_pred'])
-plt.title("Customer Sales Forecast using Linear Regression")
-plt.xlabel("Date")
-plt.ylabel("Sales")
-plt.legend(["Original Sales", "Predicted Sales"])
-plt.show()
+# plt.figure(figsize=(15,5))
+# plt.plot(monthly_sales['idCalendar'], monthly_sales['unitsSold'])
+# plt.plot(predict_df['idCalendar'], predict_df['linreg_pred'])
+# plt.title("Customer Sales Forecast using Linear Regression")
+# plt.xlabel("Date")
+# plt.ylabel("Sales")
+# plt.legend(["Original Sales", "Predicted Sales"])
+# plt.show()
 
 # RANDOM FOREST REGRESSOR MODEL
 rf_model = RandomForestRegressor(n_estimators=100, max_depth=20)
@@ -179,14 +179,14 @@ print('Random Forest MAE: ', rf_mae)
 print('Random Forest R2 Score: ', rf_r2)
 
 # plot the results
-plt.figure(figsize=(15,5))
-plt.plot(monthly_sales['idCalendar'], monthly_sales['unitsSold'])
-plt.plot(predict_df['idCalendar'], predict_df['rf_pred'])
-plt.title("Customer Sales Forecast using Random Forest")
-plt.xlabel("Date")
-plt.ylabel("Sales")
-plt.legend(["Original Sales", "Predicted Sales"])
-plt.show()
+# plt.figure(figsize=(15,5))
+# plt.plot(monthly_sales['idCalendar'], monthly_sales['unitsSold'])
+# plt.plot(predict_df['idCalendar'], predict_df['rf_pred'])
+# plt.title("Customer Sales Forecast using Random Forest")
+# plt.xlabel("Date")
+# plt.ylabel("Sales")
+# plt.legend(["Original Sales", "Predicted Sales"])
+# plt.show()
 
 
 # XGBoost REGRESSOR MODEL
@@ -213,28 +213,11 @@ print('XG Boost MAE: ', xgb_mae)
 print('XG Boost R2 Score: ', xgb_r2)
 
 # plot the results
-plt.figure(figsize=(15,5))
-plt.plot(monthly_sales['idCalendar'], monthly_sales['unitsSold'])
-plt.plot(predict_df['idCalendar'], predict_df['xgb_pred'])
-plt.title("Customer Sales Forecast using XGBoost")
-plt.xlabel("Date")
-plt.ylabel("Sales")
-plt.legend(["Original Sales", "Predicted Sales"])
-plt.show()
-
-
-# compare the results
-linreg_stats = [linreg_rmse, linreg_mae, linreg_r2]
-rf_stats = [rf_rmse, rf_mae, rf_r2]
-xgb_stats = [xgb_rmse, xgb_mae, xgb_r2]
-plt.figure(figsize=(15,7))
-plt.plot(linreg_stats, marker='o', label="Linear Regression")
-plt.plot(rf_stats, marker='x', label="Random Forest")
-plt.plot(xgb_stats, marker='^', label="XG Boost")
-plt.xticks([0,1,2], labels=['RMSE','MAE','R2'])
-plt.legend()
-plt.show()
-
-print("Linear Regression: ", linreg_stats)
-print("Random Forest: ", rf_stats)
-print("XG Boost: ", xgb_stats)
+# plt.figure(figsize=(15,5))
+# plt.plot(monthly_sales['idCalendar'], monthly_sales['unitsSold'])
+# plt.plot(predict_df['idCalendar'], predict_df['xgb_pred'])
+# plt.title("Customer Sales Forecast using XGBoost")
+# plt.xlabel("Date")
+# plt.ylabel("Sales")
+# plt.legend(["Original Sales", "Predicted Sales"])
+# plt.show()

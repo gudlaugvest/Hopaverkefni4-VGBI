@@ -67,7 +67,7 @@ rules['antecedents'] = rules['antecedents'].apply(lambda x: ', '.join(sorted(lis
 rules['consequents'] = rules['consequents'].apply(lambda x: ', '.join(sorted(list(x))))
 
 # drop unnecessary columns
-rules = rules.drop(columns=['kulczynski', 'zhangs_metric', 'antecedent support', 'consequent support', 'zhangs_metric', 'jaccard', 'certainty', 'kulczynski', 'representativity'], errors='ignore')
+rules = rules.drop(columns=['kulczynski', 'zhangs_metric', 'zhangs_metric', 'jaccard', 'certainty', 'kulczynski', 'representativity'], errors='ignore')
 
 # get top 15 by support
 topProducts = rules.sort_values(by='support', ascending=False).head(15)
