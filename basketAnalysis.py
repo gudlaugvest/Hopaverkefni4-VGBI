@@ -66,5 +66,11 @@ print(rules.head(10))
 rules['antecedents'] = rules['antecedents'].apply(lambda x: ', '.join(sorted(list(x))))
 rules['consequents'] = rules['consequents'].apply(lambda x: ', '.join(sorted(list(x))))
 
+# drop unnecessary columns
+rules = rules.drop(columns=['kulczynski', 'zhangs_metric', 'antecedent support', 'consequent support', 'zhangs_metric', 'jaccard', 'certainty', 'kulczynski', 'representativity'], errors='ignore')
+
+# get top 15 by support
+topProducts = rules.sort_values(by='support', ascending=False).head(15)
+
 # write to csv
-rules.to_csv("association_rules_clean.csv", index=False)
+topProducts.to_csv("association_rules.csv", index=False)
