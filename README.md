@@ -1,1 +1,0 @@
-# Hopaverkefni4-VGBI
