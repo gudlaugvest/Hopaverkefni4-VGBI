@@ -33,6 +33,8 @@ SELECT s.receipt, s.idCalendar, p.name
 FROM h17.factSales AS s
 LEFT JOIN h17.dimProduct AS p 
   ON s.idProduct = p.sourceId
+  WHERE p.cost > 0 
+  AND p.price > 0
 """
 
 # read the joined data into a DataFrame
